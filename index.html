@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr-FR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="https://www.edgeangel.fr/assets/img/apple-touch-icon.png">
+	<link rel="icon" type="image/x-icon" href="https://www.edgeangel.fr/assets/img/edgeangel-32-icon.png">
+	<link rel="icon" type="image/png" href="https://www.edgeangel.fr/assets/img/edgeangel-192-icon.png" sizes="192x192">
+	<meta name="apple-mobile-web-app-title" content="EdgeAngel">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <title>EdgeAngel - Firebase Analytics in a WebView</title>
+    <meta name="description" content="Calls to log events and set user properties fired from within a WebView forwarded to native code before being sent to Firebase Analytics.">
+    <script type="text/javascript">
+	    function logEvent(name, params) {
+		  if (!name) {
+		    return;
+		  }
+
+		  if (window.AnalyticsWebInterface) {
+		    // Call Android interface
+		    window.AnalyticsWebInterface.logEvent(name, JSON.stringify(params));
+		  } else if (window.webkit
+		      && window.webkit.messageHandlers
+		      && window.webkit.messageHandlers.firebase) {
+		    // Call iOS interface
+		    var message = {
+		      command: 'logEvent',
+		      name: name,
+		      parameters: params
+		    };
+		    window.webkit.messageHandlers.firebase.postMessage(message);
+		  } else {
+		    // No Android or iOS interface found
+		    console.log("No native APIs found.");
+		  }
+		}
+
+		function setUserProperty(name, value) {
+		  if (!name || !value) {
+		    return;
+		  }
+
+		  if (window.AnalyticsWebInterface) {
+		    // Call Android interface
+		    window.AnalyticsWebInterface.setUserProperty(name, value);
+		  } else if (window.webkit
+		      && window.webkit.messageHandlers
+		      && window.webkit.messageHandlers.firebase) {
+		    // Call iOS interface
+		    var message = {
+		      command: 'setUserProperty',
+		      name: name,
+		      value: value
+		   };
+		    window.webkit.messageHandlers.firebase.postMessage(message);
+		  } else {
+		    // No Android or iOS interface found
+		    console.log("No native APIs found.");
+		  }
+		}
+
+		window.onload = function () {
+			logEvent('custom_event', {
+			  parameter_1: 'value_1',
+			  parameter_2: 'value_2'
+			});
+
+			setUserProperty('user_id', '1234');
+
+			setUserProperty('user_country', 'fr');
+		}
+	</script>
+  </head>
+  <body>
+  	<p>This screen has just sent an event and user properties to the native layer (which will send them to Firebase Analytics).</p>
+  	<ul>
+  		<li>The 'custom_event' event with the 'parameter_1' (value: 'value_1') and 'parameter_2' (value: 'value_2') parameters.</li>
+  		<li>The 'user_id' (value: '1234') and 'user_country' (value 'fr') user properties.</li>
+  	</ul>
+  </body>
+</html>

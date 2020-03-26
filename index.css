@@ -1,0 +1,74 @@
+/*
+ * Copyright (c) 2020 EdgeAngel
+ * 
+ * Licensed under GNU General Public License, Version 3.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * https://www.gnu.org/licenses/gpl-3.0.html
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Inter&display=swap');
+
+html, body { 
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    height: 90%;
+    width: 100%;        
+}
+
+h3 {
+    margin-bottom: 75px;
+}
+
+button {
+    position: relative;
+    padding: 18px 48px;
+    min-width: 80%;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 6px;
+    background-color: #0f4c81;
+    box-shadow: 0 10px 20px 3px rgba(82, 104, 206, 0.15);
+    -webkit-transition: all 600ms ease;
+    transition: all 600ms ease;
+    color: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    display: block;
+}
+
+button:hover {
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+}
+
+button:focus {
+    outline:0;
+}

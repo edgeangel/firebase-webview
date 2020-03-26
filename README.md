@@ -1,7 +1,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 # Google Analytics for Firebase in a WebView
-Log events and set user properties from a WebView to Google Analytics for Firebase.
+🔥 Log events and set user properties from a WebView to Google Analytics for Firebase.
 
 ## Documentation and resources
 * Firebase docs: https://firebase.google.com/docs/analytics/webview

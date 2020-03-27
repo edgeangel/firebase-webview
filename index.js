@@ -63,6 +63,11 @@ function setUserProperty(name, value) {
   }
 }
 
+window.onload = function() {
+  console.log("screen-view-custom");
+  logEvent("screen_view_custom", { screen_name: "Home", source: "webview" });
+};
+
 document.getElementById("user-property").addEventListener("click", function() {
   console.log("user-property");
   setUserProperty("user_status", "unlogged");
